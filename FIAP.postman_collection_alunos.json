@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "dec4d2ae-c5df-4db4-aa7a-7d3f7383259b",
+		"name": "FIAP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11794083"
+	},
+	"item": [
+		{
+			"name": "list_alunos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operatorId\": 123,\r\n    \"services\": [1, 2],\r\n    \"start\": {\r\n        \"latitude\": 11.111,\r\n        \"longitude\": 22.222,\r\n        \"dateTime\": \"2023-01-01T01:01:01\"\r\n    },\r\n    \"end\": {\r\n        \"latitude\": -11.111,\r\n        \"longitude\": -22.222,\r\n        \"dateTime\": \"2023-02-02T02:02:02\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/alunos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alunos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save_aluno",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"sex\", _.sample([\"MASCULINO\", \"FEMININO\", \"NAO_BINARIO\"]))\r",
+							"pm.environment.set(\"registry\", _.random(0, 10000000))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{$randomUUID}}\",\r\n    \"name\": \"{{$randomFullName}}\",\r\n    \"registry\": \"rm{{registry}}\",\r\n    \"sex\": \"{{sex}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/alunos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alunos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_aluno",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"sex\", _.sample([\"MASCULINO\", \"FEMININO\", \"NAO_BINARIO\"]))\r",
+							"pm.environment.set(\"registry\", _.random(0, 10000000))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"09a5a9ad-c872-48d8-8429-a627458085f7\",\r\n    \"name\": \"{{$randomFullName}}\",\r\n    \"registry\": \"rm{{registry}}\",\r\n    \"sex\": \"{{sex}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/alunos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alunos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_aluno",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"sex\", _.sample([\"MASCULINO\", \"FEMININO\", \"NAO_BINARIO\"]))\r",
+							"pm.environment.set(\"registry\", _.random(0, 10000000))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{$randomUUID}}\",\r\n    \"name\": \"{{$randomFullName}}\",\r\n    \"registry\": \"rm{{registry}}\",\r\n    \"sex\": \"{{sex}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/alunos/09a5a9ad-c872-48d8-8429-a627458085f7",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alunos",
+						"09a5a9ad-c872-48d8-8429-a627458085f7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
